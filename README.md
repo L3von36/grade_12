@@ -22,6 +22,9 @@ most likely to appear next.
   options. Filters out OCR noise too short to be a real question.
 - `topic_classifier.py`: Hybrid TF-IDF taxonomy builder + classifier.
   Combines hand-curated seeds with corpus-learned terms.
+- `prediction_model.py`: Ensemble next-year predictor (recent average,
+  trend slope, cyclical phase, stability) plus leave-one-year-out
+  backtesting that reports hit rate and rank correlation per subject.
 - `validation.py`: Ground-truth loading + OCR/topic accuracy metrics
   (character error rate, word F1, topic precision/recall/F1).
 - `validation/ground_truth.json`: Manually-transcribed reference text
@@ -36,8 +39,9 @@ most likely to appear next.
 ## Roadmap
 
 1. Phase 1: EasyOCR upgrade + validation harness + modular code.
-2. Phase 2 (current): Question extraction + hybrid TF-IDF topic taxonomy.
-3. Phase 3: Backtested ensemble prediction model (cyclical patterns).
+2. Phase 2: Question extraction + hybrid TF-IDF topic taxonomy.
+3. Phase 3 (current): Backtested ensemble prediction model
+   (cyclical patterns).
 4. Phase 4: Per-subject student study guides (ranked topics, textbook
    chapters, confidence scores, practice questions).
 5. Phase 5: End-to-end Colab pipeline + HTML/PDF student outputs.
