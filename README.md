@@ -16,6 +16,12 @@ most likely to appear next.
 - `exam_downloader.py`: Download exam PDFs from ethiobookreview.com.
 - `ocr_engine.py`: OCR with EasyOCR (primary) and Tesseract (fallback).
   Returns text + confidence per page.
+- `topics.py`: Hand-curated `TOPIC_RULES` taxonomy (subject → topic → seed
+  keywords) used as the seed for TF-IDF augmentation.
+- `question_extractor.py`: Parse OCR text into individual questions with
+  options. Filters out OCR noise too short to be a real question.
+- `topic_classifier.py`: Hybrid TF-IDF taxonomy builder + classifier.
+  Combines hand-curated seeds with corpus-learned terms.
 - `validation.py`: Ground-truth loading + OCR/topic accuracy metrics
   (character error rate, word F1, topic precision/recall/F1).
 - `validation/ground_truth.json`: Manually-transcribed reference text
@@ -29,8 +35,8 @@ most likely to appear next.
 
 ## Roadmap
 
-1. Phase 1 (current): EasyOCR upgrade + validation harness + modular code.
-2. Phase 2: Question extraction + TF-IDF topic taxonomy.
+1. Phase 1: EasyOCR upgrade + validation harness + modular code.
+2. Phase 2 (current): Question extraction + hybrid TF-IDF topic taxonomy.
 3. Phase 3: Backtested ensemble prediction model (cyclical patterns).
 4. Phase 4: Per-subject student study guides (ranked topics, textbook
    chapters, confidence scores, practice questions).
