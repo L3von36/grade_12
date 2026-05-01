@@ -1,0 +1,29 @@
+{
+  "_comment": "Ground truth dataset for OCR + topic detection validation. Manually transcribe a small sample of questions per exam (10-15 questions each) for at least one math and one biology exam. Used by validation.py to measure OCR accuracy and topic-detection F1.",
+  "_schema": {
+    "exam_id": "string, e.g. 'mathematics-2008-questions'",
+    "subject": "string",
+    "year": "string (Ethiopian calendar year)",
+    "type": "questions | answers",
+    "expected_topics": "list of topic keys from TOPIC_RULES",
+    "questions": "list of {page: int, id: str, text: str}"
+  },
+  "exams": [
+    {
+      "exam_id": "mathematics-2008-questions",
+      "subject": "mathematics",
+      "year": "2008",
+      "type": "questions",
+      "expected_topics": [],
+      "questions": []
+    },
+    {
+      "exam_id": "biology-2008-questions",
+      "subject": "biology",
+      "year": "2008",
+      "type": "questions",
+      "expected_topics": [],
+      "questions": []
+    }
+  ]
+}
