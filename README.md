@@ -25,6 +25,9 @@ most likely to appear next.
 - `prediction_model.py`: Ensemble next-year predictor (recent average,
   trend slope, cyclical phase, stability) plus leave-one-year-out
   backtesting that reports hit rate and rank correlation per subject.
+- `student_output.py`: Generate study guides (JSON + HTML) from predictions.
+  Each guide shows ranked topics, frequency, textbook links, confidence
+  with explanations, and study time estimates.
 - `validation.py`: Ground-truth loading + OCR/topic accuracy metrics
   (character error rate, word F1, topic precision/recall/F1).
 - `validation/ground_truth.json`: Manually-transcribed reference text
@@ -36,12 +39,15 @@ most likely to appear next.
 - `extract_exam_text_ocr.py`: CLI entry point for OCR extraction.
   Set `OCR_ENGINE=easyocr|tesseract|auto` (default: `auto`).
 
+## Outputs
+
+- `study_guides/`: Study guide JSON and HTML files (one per subject).
+  Students open the HTML in a browser or download the JSON for use in apps.
+
 ## Roadmap
 
-1. Phase 1: EasyOCR upgrade + validation harness + modular code.
-2. Phase 2: Question extraction + hybrid TF-IDF topic taxonomy.
-3. Phase 3 (current): Backtested ensemble prediction model
-   (cyclical patterns).
-4. Phase 4: Per-subject student study guides (ranked topics, textbook
-   chapters, confidence scores, practice questions).
-5. Phase 5: End-to-end Colab pipeline + HTML/PDF student outputs.
+1. Phase 1 ✓: EasyOCR upgrade + validation harness + modular code.
+2. Phase 2 ✓: Question extraction + hybrid TF-IDF topic taxonomy.
+3. Phase 3 ✓: Backtested ensemble prediction model (cyclical patterns).
+4. Phase 4 ✓ (current): Student study guides (JSON + HTML).
+5. Phase 5: End-to-end Colab pipeline integration + deployment notes.
