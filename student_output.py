@@ -185,7 +185,7 @@ def save_study_guide(guide: StudyGuide, output_dir: str) -> str:
 
 
 def render_html(guide: StudyGuide) -> str:
-    """Render a study guide as HTML."""
+    """Render a study guide as HTML (can be printed to PDF in any browser)."""
     rows = []
     for topic in guide.topics:
         rows.append(f"""
@@ -218,6 +218,10 @@ def render_html(guide: StudyGuide) -> str:
   <meta charset="utf-8">
   <title>{guide.subject.title()} Study Guide - Exam Year {guide.exam_year}</title>
   <style>
+    @media print {{
+      body {{ margin: 0.5in; }}
+      table {{ page-break-inside: avoid; }}
+    }}
     body {{ font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }}
     h1 {{ color: #333; }}
     h2 {{ color: #666; margin-top: 30px; }}
@@ -226,15 +230,17 @@ def render_html(guide: StudyGuide) -> str:
     th {{ background: #4CAF50; color: white; }}
     tr:nth-child(even) {{ background: #f2f2f2; }}
     .meta {{ font-size: 0.9em; color: #666; margin: 10px 0; }}
-    .confidence-high {{ color: green; font-weight: bold; }}
-    .confidence-medium {{ color: orange; font-weight: bold; }}
-    .confidence-low {{ color: red; font-weight: bold; }}
+    .print-note {{ background: #e3f2fd; padding: 10px; border-left: 4px solid #2196F3; margin: 20px 0; font-size: 0.9em; }}
   </style>
 </head>
 <body>
   <h1>{guide.subject.upper()} Study Plan for Exam Year {guide.exam_year}</h1>
   <div class="meta">
     Generated: {guide.generated} | Model v{guide.model_version}
+  </div>
+
+  <div class="print-note">
+    💡 <strong>Tip:</strong> Click <strong>Print</strong> (Ctrl+P or Cmd+P) and select "Save as PDF" to download a printable version.
   </div>
 
   {textbook_section}
